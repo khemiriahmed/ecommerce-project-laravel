@@ -13,13 +13,13 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-       // $products = Product::all();
+    {
+        // $products = Product::all();
         //$products = Product::query()->get();
         //$products = Product::get();
         ///$products;
-         $products = Product::query()->with('category')->paginate(10);
-        return view('users.admin.product.index',compact('products'));
+        $products = Product::query()->with('category')->paginate(10);
+        return view('users.admin.product.index', compact('products'));
     }
 
     /**
@@ -27,11 +27,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-         $products = new Product();
-         $categories = Category::all();
-         $products->quantity = 0;
-         $isUpdate = false;
-        return view('users.admin.product.form',compact('products','isUpdate','categories'));
+        $products = new Product();
+        $categories = Category::all();
+        $products->quantity = 0;
+        $isUpdate = false;
+        return view('users.admin.product.form', compact('products', 'isUpdate', 'categories'));
     }
 
     /**
@@ -39,16 +39,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-       dd($request->validated());
+        dd($request->validated());
         $formFields = $request->validated();
-        if($request->hasFile('image')){
-            $formFields['image'] = $request->file('image')->store("product","public");
-         }
-       //dd($formFields);
-       Product::create($formFields);
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store("product", "public");
+        }
+        //dd($formFields);
+        Product::create($formFields);
 
-       return to_route('products.index')->with("success","Product create successfully");
-      
+        return to_route('products.index')->with("success", "Product create successfully");
+
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        
+
     }
 
     /**
@@ -64,10 +64,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-       $products = $product;
+        $products = $product;
         $categories = Category::all();
         $isUpdate = true;
-        return view('users.admin.product.form',compact('products','isUpdate','categories'));
+        return view('users.admin.product.form', compact('products', 'isUpdate', 'categories'));
     }
 
     /**
@@ -76,18 +76,18 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $formFields = $request->validated();
-        $product->fill($formFields)->save(); 
-        return to_route('products.index')->with("success","Product updated successfully");
-       //   dd($product);
+        $product->fill($formFields)->save();
+        return to_route('products.index')->with("success", "Product updated successfully");
+        //   dd($product);
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
-    {    
-     $product->delete();
-     return to_route('products.index')->with("success","Product deleted successfully");
+    {
+        $product->delete();
+        return to_route('products.index')->with("success", "Product deleted successfully");
         //dd($product);
     }
 }

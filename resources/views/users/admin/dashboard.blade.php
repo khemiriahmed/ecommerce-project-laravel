@@ -1,4 +1,3 @@
-
 @extends('users.admin.app')
 @section('content')
     <div class="row justify-content-center">
@@ -17,5 +16,5 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 @endsection

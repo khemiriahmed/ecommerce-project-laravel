@@ -9,25 +9,24 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
-    {
+  /**
+   * Handle an incoming request.
+   *
+   * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+   */
+  public function handle(Request $request, Closure $next): Response
+  {
 
-      if(Auth::check()) {
-        $user = Auth::user();
-       // dd($user->isAdmin());
-        if($user->isAdmin()){
-          return $next($request);
-          }
-          else{
-          return redirect (route('editor_dashboard'));
+    if (Auth::check()) {
+      $user = Auth::user();
+      // dd($user->isAdmin());
+      if ($user->isAdmin()) {
+        return $next($request);
+      } else {
+        return redirect(route('editor_dashboard'));
       }
-      }
-    
-      abort(403);
     }
+
+    abort(403);
+  }
 }

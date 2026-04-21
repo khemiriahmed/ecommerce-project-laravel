@@ -16,22 +16,22 @@ class EditorAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
-     if(Auth::check()) {
-    //     $user = Auth::user(); 
-    //    // dd($user->isAdmin('editor'));
-    //     if($user->isAdmin()){
-    //         return redirect (route('admin_dashboard'));
-    //         }
-    //         else if($user->isEditor()){
-    //         return $next($request);
-    //   }
+        if (Auth::check()) {
+            //     $user = Auth::user(); 
+            //    // dd($user->isAdmin('editor'));
+            //     if($user->isAdmin()){
+            //         return redirect (route('admin_dashboard'));
+            //         }
+            //         else if($user->isEditor()){
+            //         return $next($request);
+            //   }
 
-    if(auth::check() && Auth::user()->isEditor()){
-         return $next($request);
-    }
-     abort(403);
-      }
-    
-      abort(403);
+            if (auth::check() && Auth::user()->isEditor()) {
+                return $next($request);
+            }
+            abort(403);
+        }
+
+        abort(403);
     }
 }

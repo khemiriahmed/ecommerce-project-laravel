@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-   
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -62,16 +62,16 @@ Route::middleware(['editor'])->group(function () {
 
 //Admin
 Route::middleware(['admin'])->group(function () {
-    Route::resource('products',ProductController::class);
-    Route::resource('categories',CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin_dashboard');
 });
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('/', [\App\Http\Controllers\StoreController::class,'index'])->name('home_page');
+Route::get('/', [\App\Http\Controllers\StoreController::class, 'index'])->name('home_page');
 
 Auth::routes();
 

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,12 +17,13 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
 
-  
-     @include('shared.nav')
+
+    @include('shared.nav')
     <div class="container" id="app">
-      
+
         <main class="py-4">
             <div class="row">
 
@@ -31,18 +33,18 @@
 
                 <div class="col-10">
                     <div>
-         @if ($errors->any())
-      
-           <div class="alert alert-danger" role="alert">
-            <div class="list-group">
-                <ul class="">
-                      @foreach($errors->all() as $error)
-                       <li> {{ $error }}</li>
-                      @endforeach
-                </ul>
-            </div>
-           </div>
-        @endif
+                        @if ($errors->any())
+
+                            <div class="alert alert-danger" role="alert">
+                                <div class="list-group">
+                                    <ul class="">
+                                        @foreach($errors->all() as $error)
+                                            <li> {{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     @yield('content')
                 </div>
@@ -50,4 +52,5 @@
         </main>
     </div>
 </body>
+
 </html>

@@ -13,7 +13,7 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-     {
+    {
         $categories = Category::query()->paginate(10);
         return view('category.index', compact(
             'categories'
@@ -25,9 +25,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         $category = new category();
-         $isUpdate = false;
-        return view('category.form',compact('category','isUpdate'));
+        $category = new category();
+        $isUpdate = false;
+        return view('category.form', compact('category', 'isUpdate'));
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $products = $category->products()->get();
-        return view('category.show',compact('category','products'));
+        return view('category.show', compact('category', 'products'));
     }
 
     /**
@@ -54,9 +54,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-           $isUpdate = true;
+        $isUpdate = true;
         return view('category.form', compact(
-            'category', 'isUpdate'
+            'category',
+            'isUpdate'
         ));
     }
 
@@ -65,7 +66,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-         $category->fill($request->validated())->save();
+        $category->fill($request->validated())->save();
         return to_route('categories.index')->with('success', 'Category updated successfully');
     }
 
@@ -74,7 +75,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-         $category->delete();
+        $category->delete();
         return to_route('categories.index')->with('success', 'Category deleted successfully');
     }
 }

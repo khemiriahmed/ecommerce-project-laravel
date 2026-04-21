@@ -9,36 +9,38 @@
     </div>
     <table class="table">
         <thead>
-        <tr>
-            <th>#ID</th>
-            <th>Name</th>
-            <th>Name plus</th>
-            <th>Update product</th>
-        </tr>
+            <tr>
+                <th>#ID</th>
+                <th>Name</th>
+                <th>Name plus</th>
+                <th>Update product</th>
+            </tr>
         </thead>
         <tbody>
-        @forelse($products as $product)
-            <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name}}</td>
-                <td>
-                @foreach ($category->products as $product)
-        {{ $product->name }} <br>
-    @endforeach    
-                </td>
+            @forelse($products as $product)
+                <tr>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->name}}</td>
+                    <td>
+                        @foreach ($category->products as $product)
+                            {{ $product->name }} <br>
+                        @endforeach
+                    </td>
 
-                <td>
-                    <div class="btn-group gap-2">
-                        <a href="{{route('products.edit', $product)}}" class="btn btn-primary">Update</a>
-                    </div>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="6" align="center"><h6>No Products for this category.</h6></td>
-            </tr>
+                    <td>
+                        <div class="btn-group gap-2">
+                            <a href="{{route('products.edit', $product)}}" class="btn btn-primary">Update</a>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" align="center">
+                        <h6>No Products for this category.</h6>
+                    </td>
+                </tr>
 
-        @endforelse
+            @endforelse
         </tbody>
     </table>
 @endsection
